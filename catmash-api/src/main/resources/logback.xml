@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d [%highlight(%level)] [%t] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="WEBAPP_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${java.io.tmpdir}/api-webapp.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%highlight(%level)] [%t] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="CATALINA_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${java.io.tmpdir}/api-catalina.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%highlight(%level)] [%t] %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="SUPERVISION_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${java.io.tmpdir}/catmash-api.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%highlight(%level)] [%t] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.catmash.api" level="DEBUG">
+        <appender-ref ref="WEBAPP_FILE"/>
+    </logger>
+
+    <logger name="org.springframework.web" level="INFO">
+        <appender-ref ref="CATALINA_FILE"/>
+    </logger>
+    <logger name="supervision" level="INFO">
+        <appender-ref ref="SUPERVISION_FILE"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>
+
