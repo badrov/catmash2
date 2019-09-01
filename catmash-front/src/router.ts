@@ -9,24 +9,14 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'catList',
-      component: () => import(/* webpackChunkName: "catList" */ './views/CatList.vue'),
-    },
-    {
       path: '/vote',
       name: 'vote',
       component: () => import(/* webpackChunkName: "vote" */ './views/Vote.vue'),
     },
     {
-      path: '/cat',
-      name: 'cat',
-      component: () => import(/* webpackChunkName: "cat" */ './views/Cat.vue'),
-    },
-    {
-      path: '/catList',
-      name: 'catList',
-      component: () => import(/* webpackChunkName: "catList" */ './views/CatList.vue'),
+      path: '/catGrid',
+      name: 'catGrid',
+      component: () => import(/* webpackChunkName: "catList" */ './views/CatGrid.vue'),
     },
   ],
 });

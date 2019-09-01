@@ -10,4 +10,5 @@ import java.io.Serializable;
 public class Cat implements Serializable {
     private String id;
     private String url;
+    private int score;
 }
