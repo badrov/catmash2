@@ -3,7 +3,6 @@ package com.catmash.api.resource;
 import com.catmash.api.exception.ApiNotFoundException;
 import com.catmash.api.service.CatService;
 import com.catmash.service.model.Cat;
-import com.catmash.service.model.Image;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -31,7 +30,7 @@ public class CatResource {
             @ApiResponse(code = 200, message = "Récupération des données effectuée avec succès, soit avec contenu soit sans contenu"),
     })
     @GetMapping(value = "/cats")
-    public ResponseEntity<List<Image>> getCats() {
+    public ResponseEntity<List<Cat>> getCats() {
         return Optional.ofNullable(catService.getImageCats())
                 .map(cats -> new ResponseEntity<>(cats, HttpStatus.OK))
                 .orElseThrow(() -> new ApiNotFoundException("Cats not found exception."));
