@@ -1,8 +1,8 @@
 package com.catmash.resource;
 
 import com.catmash.exception.ApiNotFoundException;
-import com.catmash.service.CatService;
 import com.catmash.model.Cat;
+import com.catmash.service.CatService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
