@@ -1,4 +1,4 @@
-package com.catmash.api.http;
+package com.catmash.http;
 
 import feign.Feign;
 import feign.Logger;

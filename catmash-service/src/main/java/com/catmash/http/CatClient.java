@@ -1,6 +1,6 @@
-package com.catmash.api.http;
+package com.catmash.http;
 
-import com.catmash.service.model.CatList;
+import com.catmash.model.CatList;
 import feign.RequestLine;
 
 public interface CatClient {

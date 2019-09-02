@@ -57,12 +57,20 @@ export default {
      },
 
      voteOne(cat) {
-        console.log(cat.id);
+         console.log(cat.id);
+         axios({ method: 'PUT', url: 'http://localhost:8080/cat/' + cat.id + '/vote' })
+         .then((response) => {
+            this.refreshVoteScreen();
+         });
      },
 
-      displayScores() {
+     displayScores() {
         this.$router.push('catGrid');
-      },
+     },
+     refreshVoteScreen() {
+         this.$router.go();
+     },
+
   },
 };
 </script>

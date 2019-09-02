@@ -1,4 +1,4 @@
-package com.catmash.api;
+package com.catmash;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
