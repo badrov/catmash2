@@ -36,6 +36,15 @@ public class CatResource {
                 .orElseThrow(() -> new ApiNotFoundException("Cats not found exception."));
     }
 
+    @GetMapping(value = "/cat/{id}")
+    @CrossOrigin(origins = "http://localhost:8081")
+    public ResponseEntity<Cat> getCat(@PathVariable("id") String id) {
+        return Optional.ofNullable(catService.getCatById(id))
+                .map(cat -> new ResponseEntity<>(cat, HttpStatus.OK))
+                .orElseThrow(() -> new ApiNotFoundException("Cat not found exception."));
+    }
+
+
     @ApiOperation(
             value = "update cat's score"
     )
