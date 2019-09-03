@@ -1,7 +1,9 @@
 <template>
   <div class="cat">
     <br>
-    <img :src='cat.url' v-on:click='action(cat)'>
+    <img id='img1' class='img usemap=#m1' :src='cat.url' v-on:click='action(cat)'/>
+    <a href=# class=close></a>
+    <img class=expand src=http://icons.iconarchive.com/icons/icons8/ios7/16/Editing-Expand-icon.png/>
   </div>
 </template>
 
@@ -35,8 +37,56 @@ h1, h2 {
 a {
   color: #42b983;
 }
-img {
-    max-width: 100%;
-    height: 200px;
+
+.img {
+  border-radius: 2px;
+  box-shadow: 0 0 5px #343436;
+  filter:brightness(1.1);
+  height: 100%;
+  width: 100%;
+}
+.img:target {
+  height: 450px;
+  width: 500px;
+}
+.img:target+.close {
+  display: block;
+}
+.img:target+.close+.expand{
+  display: none;
+}
+.close {
+  background-image: url(https://bit.ly/29QeT21);
+  background-repeat: no-repeat;
+  bottom: 418px;
+  display: none;
+  height: 32px;
+  left: 462px;
+  margin-top: -32px;
+  position: relative;
+  width: 32px;
+}
+.expand{
+  bottom: 125px;
+  margin-left: -32px;
+  margin-right: 16px;
+  pointer-events: none;
+  position: relative;
+}
+#wrapper {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  width: 500px;
+}
+body{
+  background-image: linear-gradient(to bottom, #178FDD  68px,  antiquewhite 68px  );
+  height: 1000px;
+}
+h2{
+  color: #000;
+  font-family: bungee shade, georgia;
+  text-align: center;
+  text-shadow: 0 0 2px #343436;
 }
 </style>
