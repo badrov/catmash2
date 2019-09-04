@@ -7,8 +7,11 @@
        v-for="(cat, catIndex) in cats"
        :key="catIndex"
        @click="index = catIndex"
-       :style="{ backgroundImage: 'url(' + cat.url + ')', width: '300px', height: '200px' }"
-     ></div>
+       :style="{ backgroundImage: 'url(' + cat.url + ')', width: '300px', height: '200px' }" >
+         <div id='progressbar'>
+             <progress :value='cat.score' min='0' max='100'></progress>
+         </div>
+     </div>
   </div>
 </template>
 
