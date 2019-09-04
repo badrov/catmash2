@@ -16,5 +16,6 @@ public class Cat implements Serializable {
     @Id
     private String id;
     private String url;
+    private String name;
     private int score;
 }

@@ -1617,6 +1617,11 @@ bluebird@^3.1.1, bluebird@^3.5.1, bluebird@^3.5.5:
   resolved "https://registry.npm.taobao.org/bluebird/download/bluebird-3.5.5.tgz#a8d0afd73251effbbd5fe384a77d73003c17a71f"
   integrity sha1-qNCv1zJR7/u9X+OEp31zADwXpx8=
 
+blueimp-gallery@^2.33.0:
+  version "2.35.0"
+  resolved "https://registry.yarnpkg.com/blueimp-gallery/-/blueimp-gallery-2.35.0.tgz#96d5792138e3365ce83d0a4afd84a7f803612b29"
+  integrity sha512-/dT0K8Vh2FlmKW+PILbygoZ4ramOBM8x2e85JTHOXImI2v2flaBBInQNu7nPonCkWLFejfsf54oHdty1QQslog==
+
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.8"
   resolved "https://registry.npm.taobao.org/bn.js/download/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
@@ -8202,6 +8207,14 @@ uuid@^3.0.1, uuid@^3.3.2:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha1-RWjwIW54dg7h2/Ok0s9T4iQRKGY=
 
+v-gallery@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/v-gallery/-/v-gallery-1.2.4.tgz#59524c3659a8fd981a1fa7f5f1c5f623cfc6d88a"
+  integrity sha512-FFd+GCqlgCbS7S9ulz0vURDzr+87tNYjHYlIFbizxMPIlCydfHBZ+Nu/LxdDPRi04pu+uPsHETgUjLUBPDYRYA==
+  dependencies:
+    blueimp-gallery "^2.33.0"
+    vue "^2.5.11"
+
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/validate-npm-package-license/download/validate-npm-package-license-3.0.4.tgz#fc91f6b9c7ba15c857f4cb2c5defeec39d4f410a"
@@ -8238,6 +8251,13 @@ vue-class-component@^7.0.1, vue-class-component@^7.0.2:
   version "7.1.0"
   resolved "https://registry.npm.taobao.org/vue-class-component/download/vue-class-component-7.1.0.tgz#b33efcb10e17236d684f70b1e96f1946ec793e87"
   integrity sha1-sz78sQ4XI21oT3Cx6W8ZRux5Poc=
+
+vue-gallery@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vue-gallery/-/vue-gallery-2.0.0.tgz#07d29e9169701d7d19b6b5f643038f1d50606329"
+  integrity sha512-6BCItrHwH0v0p2T8Pf6iAUGOi7sZtDt/WLn+DiRznfMec/WPPjT/udBABChkyGGzdn/FBHoF768ITAjLDXfMLw==
+  dependencies:
+    blueimp-gallery "^2.33.0"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
@@ -8293,10 +8313,10 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue@^2.6.10:
+vue@^2.5.11, vue@^2.6.10:
   version "2.6.10"
-  resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
-  integrity sha1-pysaQqTYKnIepDjRtr9V5mGVxjc=
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
+  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
 vuex@^3.0.1:
   version "3.1.1"

@@ -6,3 +6,7 @@ select cat0_.id as id1_0_0_, cat0_.score as score2_0_0_, cat0_.url as url3_0_0_ 
 org.h2.jdbc.JdbcSQLDataException: Erreur lors de la conversion de données "MTgwODA3MA"
 Data conversion error converting "MTgwODA3MA"; SQL statement:
 select cat0_.id as id1_0_0_, cat0_.score as score2_0_0_, cat0_.url as url3_0_0_ from cat cat0_ where cat0_.id=? [22018-199]
+2019-09-03 20:38:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Erreur de syntaxe dans l'instruction SQL "SELECT * FROM CAT RANDOM()[*] LIMIT ? "; attendu "identifier"
+Syntax error in SQL statement "SELECT * FROM CAT RANDOM()[*] LIMIT ? "; expected "identifier"; SQL statement:
+Select * FROM Cat RANDOM() LIMIT ? [42001-199]

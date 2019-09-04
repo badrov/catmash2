@@ -1,3 +1,5 @@
+
+
 package com.catmash.service;
 
 import com.catmash.http.CatHttpClientBuilder;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,16 +22,13 @@ public class CatService {
 
     public List<Cat> syncCatsRepository() {
         final CatHttpClientBuilder feignClientBuilder = new CatHttpClientBuilder();
-        final List<Cat> cats = feignClientBuilder
+        return feignClientBuilder
                 .getCatClient()
                 .findAll()
                 .getImages()
                 .stream()
+                .map(cat -> catRepository.save(cat))
                 .collect(Collectors.toList());
-
-        catRepository.saveAll(cats);
-
-        return cats;
     }
 
     public List<Cat> getCats() {
@@ -36,11 +36,9 @@ public class CatService {
     }
 
     public Cat getCatById(final String catId) {
-
         if (StringUtils.isEmpty(catId)){
             throw new IllegalArgumentException("cat id must not be empty");
         }
-
         return catRepository.findById(catId).orElse(null);
     }
 
@@ -50,14 +48,18 @@ public class CatService {
         }
 
         final Cat cat = getCatById(catId);
-        if (cat == null){
-            throw new IllegalArgumentException("cat not found");
+        if (cat != null) {
+            int currentScore = cat.getScore();
+            cat.setScore(++currentScore);
+            catRepository.save(cat);
         }
-
-        int currentScore = cat.getScore();
-        cat.setScore(++currentScore);
-        catRepository.save(cat);
         return cat;
+    }
 
+    public List<Cat> getCatsRandom(final int count) {
+        if (count == 0){
+            return new ArrayList<>();
+        }
+        return catRepository.getCatsRandom(count);
     }
 }

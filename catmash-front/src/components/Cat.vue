@@ -43,7 +43,7 @@ a {
   box-shadow: 0 0 5px #343436;
   filter:brightness(1.1);
   height: 100%;
-  width: 100%;
+  width: 200px;
 }
 .img:target {
   height: 450px;

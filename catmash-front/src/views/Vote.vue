@@ -2,14 +2,11 @@
   <div>
     <h1>{{ msg }}</h1>
     <div class='row'>
-      <button v-on:click='() => {displayScores()}'>Display scores</button>
+      <button v-on:click='() => {displayScores()}'>Go to score!</button>
     </div>
     <div class='row'>
-      <div class='column'>
-        <Cat :cat='leftCat' :action='(cat) => voteOne(cat)'/>
-      </div>
-      <div class='column'>
-        <Cat :cat='rightCat' :action='(cat) => voteOne(cat)'/>
+      <div class='column' v-for='cat in cats' :key='cat.id'>
+        <Cat :cat='cat' :action='(cat) => voteOne(cat)'/>
       </div>
     </div>
   </div>
@@ -18,46 +15,36 @@
 <script>
 import Cat from '@/components/Cat';
 import axios from 'axios';
+import VueGallery from 'vue-gallery';
 
 export default {
   name: 'Vote',
   components: {
+    'gallery': VueGallery,
     Cat,
   },
 
   data() {
     return {
-      msg: 'Choose your favorite cat',
-      leftCat: {url : ''},
-      rightCat: {url : ''},
-      cats : [],
+      msg: 'Pour quel chat voteras-tu?',
+      cats: [],
     };
   },
 
   mounted() {
-     axios({ method: 'GET', url: 'http://localhost:8080/cats' })
+     axios({ method: 'GET', url: 'http://localhost:8080/cats/random?count=2' })
      .then((response) => {
-        this.displayTwoCats(response);
+        this.displayTwoCats(response.data);
      });
   },
 
   methods: {
-     displayTwoCats(response) {
-      this.cats = response.data;
-      const catsCount = this.cats.length;
-
-      const leftCatIndex = Math.floor((Math.random() * catsCount) + 1);
-      this.leftCat = this.cats[leftCatIndex];
-
-      let rightCatIndex = Math.floor((Math.random() * catsCount) + 1);
-      if (leftCatIndex === rightCatIndex) {
-        rightCatIndex = (rightCatIndex + 1) % catsCount;
-      }
-      this.rightCat = this.cats[rightCatIndex];
+     displayTwoCats(cats) {
+      this.cats = cats;
      },
 
      voteOne(cat) {
-         axios({ method: 'PUT', url: 'http://localhost:8080/cat/' + cat.id + '/vote' })
+         axios({ method: 'PUT', url: 'http://localhost:8080/cat/' + cat.id })
          .then((response) => {
             this.refreshVoteScreen();
          });
@@ -66,6 +53,7 @@ export default {
      displayScores() {
         this.$router.push('catGrid');
      },
+
      refreshVoteScreen() {
          this.$router.go();
      },
@@ -109,4 +97,14 @@ button {
   color: white;
   border: none;
 }
+
+.image {
+  float: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 1px solid #ebebeb;
+  margin: 5px;
+}
+
 </style>

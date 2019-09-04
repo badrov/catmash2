@@ -3,9 +3,6 @@ package com.catmash.resource;
 import com.catmash.exception.ApiNotFoundException;
 import com.catmash.model.Cat;
 import com.catmash.service.CatService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +18,6 @@ public class CatResource {
     @Autowired
     private CatService catService;
 
-    @ApiOperation(
-            value = "Récupération des cats",
-            notes = "Récupération des cats"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Récupération des données effectuée avec succès, soit avec contenu soit sans contenu"),
-    })
     @GetMapping(value = "/cats")
     @CrossOrigin(origins = "http://localhost:8081")
     public ResponseEntity<List<Cat>> getCats() {
@@ -44,35 +34,23 @@ public class CatResource {
                 .orElseThrow(() -> new ApiNotFoundException("Cat not found exception."));
     }
 
-
-    @ApiOperation(
-            value = "update cat's score"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Améliorer le score du chat en question."),
-    })
-    @PutMapping(value = "/cat/{id}/vote")
+    @PutMapping(value = "/cat/{id}")
     @CrossOrigin(origins = "http://localhost:8081")
     public ResponseEntity<Cat> vote(@PathVariable("id") String id) {
         final Cat cat = catService.updateScore(id);
         if (cat == null){
-            throw new ApiNotFoundException("Cats not found exception.");
+            throw new ApiNotFoundException("Cat not found exception.");
         }
         return new ResponseEntity<>(cat, HttpStatus.OK);
     }
 
-    @ApiOperation(
-            value = "update cat's score"
-    )
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Améliorer le score du chat en question."),
-    })
-    @PostMapping(value = "/cats/sync")
-    public ResponseEntity<List<Cat>> syncCats() {
-        final List<Cat> catList = catService.syncCatsRepository();
+    @GetMapping(value = "/cats/random")
+    @CrossOrigin(origins = "http://localhost:8081")
+    public ResponseEntity<List<Cat>> randomCats(@RequestParam("count") int count) {
+        final List<Cat> catList = catService.getCatsRandom(count);
         if (catList == null || catList.size() == 0){
             throw new ApiNotFoundException("Cats not found exception.");
         }
-        return new ResponseEntity<>(catList, HttpStatus.CREATED);
+        return new ResponseEntity<>(catList, HttpStatus.OK);
     }
 }
