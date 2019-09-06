@@ -20,7 +20,7 @@ import VueGallery from 'vue-gallery';
 export default {
   name: 'Vote',
   components: {
-    'gallery': VueGallery,
+    gallery: VueGallery,
     Cat,
   },
 
@@ -57,7 +57,6 @@ export default {
      refreshVoteScreen() {
          this.$router.go();
      },
-
   },
 };
 </script>

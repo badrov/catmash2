@@ -7,8 +7,11 @@
        v-for="(cat, catIndex) in cats"
        :key="catIndex"
        @click="index = catIndex"
-       :style="{ backgroundImage: 'url(' + cat.url + ')', width: '300px', height: '200px' }"
-     ></div>
+       :style="{ backgroundImage: 'url(' + cat.url + ')', width: '300px', height: '200px' }">
+        <div id='progressbar'>
+          <progress :value='cat.score' min='0' max='100'></progress>
+        </div>
+     </div>
   </div>
 </template>
 
@@ -20,7 +23,7 @@ import VueGallery from 'vue-gallery';
 export default {
   name: 'catGrid',
   components: {
-   'gallery': VueGallery,
+    gallery: VueGallery,
     Cat,
   },
   data() {
@@ -50,11 +53,11 @@ export default {
   }
 
   .image {
-      float: left;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      border: 1px solid #ebebeb;
-      margin: 5px;
-    }
+    float: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid #ebebeb;
+    margin: 5px;
+  }
 </style>
