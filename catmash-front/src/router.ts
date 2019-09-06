@@ -9,14 +9,19 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/vote',
-      name: 'vote',
-      component: () => import(/* webpackChunkName: "vote" */ './views/Vote.vue'),
+      path: '/',
+      name: 'home',
+      component: () => import(/* webpackChunkName: "preHomePage" */ '@/views/Cats.vue'),
     },
     {
-      path: '/catGrid',
-      name: 'catGrid',
-      component: () => import(/* webpackChunkName: "catList" */ './views/CatGrid.vue'),
+      path: '/vote',
+      name: 'vote',
+      component: () => import(/* webpackChunkName: "vote" */ '@/views/Vote.vue'),
+    },
+    {
+      path: '/cats',
+      name: 'cats',
+      component: () => import(/* webpackChunkName: "catGrid" */ '@/views/Cats.vue'),
     },
   ],
 });

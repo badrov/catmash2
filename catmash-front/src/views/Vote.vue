@@ -1,11 +1,11 @@
 <template id='Vote'>
   <div>
-    <h1>{{ msg }}</h1>
+    <h1>Pour quel chat voteras-tu?</h1>
     <div class='row'>
       <button v-on:click='() => {displayScores()}'>Go to score!</button>
     </div>
     <div class='row'>
-      <div class='column' v-for='cat in cats' :key='cat.id'>
+      <div class='column' v-for='cat in randomCats' :key='cat.id'>
         <Cat :cat='cat' :action='(cat) => voteOne(cat)'/>
       </div>
     </div>
@@ -13,55 +13,35 @@
 </template>
 
 <script>
-import Cat from '@/components/Cat';
-import axios from 'axios';
+import Cat from '../components/Cat';
+import { mapState } from 'vuex';
 import VueGallery from 'vue-gallery';
 
 export default {
   name: 'Vote',
   components: {
-    'gallery': VueGallery,
+    gallery: VueGallery,
     Cat,
   },
-
-  data() {
-    return {
-      msg: 'Pour quel chat voteras-tu?',
-      cats: [],
-    };
-  },
-
   mounted() {
-     axios({ method: 'GET', url: 'http://localhost:8080/cats/random?count=2' })
-     .then((response) => {
-        this.displayTwoCats(response.data);
-     });
+      this.$store.dispatch('getRandomCats', 2);
   },
-
+  computed: mapState([
+      'randomCats',
+  ]),
   methods: {
-     displayTwoCats(cats) {
-      this.cats = cats;
-     },
-
      voteOne(cat) {
-         axios({ method: 'PUT', url: 'http://localhost:8080/cat/' + cat.id })
-         .then((response) => {
-            this.refreshVoteScreen();
+         this.$store.dispatch('updateCat', cat.id)
+         .then(() => {
+             this.$router.go();
          });
      },
-
      displayScores() {
         this.$router.push('catGrid');
      },
-
-     refreshVoteScreen() {
-         this.$router.go();
-     },
-
   },
 };
 </script>
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -82,6 +62,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
 /* Create two equal columns that floats next to each other */
 .column {
   float: left;

@@ -19,7 +19,6 @@ public class CatResource {
     private CatService catService;
 
     @GetMapping(value = "/cats")
-    @CrossOrigin(origins = "http://localhost:8081")
     public ResponseEntity<List<Cat>> getCats() {
         return Optional.ofNullable(catService.getCats())
                 .map(cats -> new ResponseEntity<>(cats, HttpStatus.OK))
@@ -27,7 +26,6 @@ public class CatResource {
     }
 
     @GetMapping(value = "/cat/{id}")
-    @CrossOrigin(origins = "http://localhost:8081")
     public ResponseEntity<Cat> getCat(@PathVariable("id") String id) {
         return Optional.ofNullable(catService.getCatById(id))
                 .map(cat -> new ResponseEntity<>(cat, HttpStatus.OK))
@@ -35,19 +33,26 @@ public class CatResource {
     }
 
     @PutMapping(value = "/cat/{id}")
-    @CrossOrigin(origins = "http://localhost:8081")
     public ResponseEntity<Cat> vote(@PathVariable("id") String id) {
         final Cat cat = catService.updateScore(id);
         if (cat == null){
-            throw new ApiNotFoundException("Cat not found exception.");
+            throw new ApiNotFoundException("Cats not found exception.");
         }
         return new ResponseEntity<>(cat, HttpStatus.OK);
     }
 
+    @PostMapping(value = "/cats/sync")
+    public ResponseEntity<List<Cat>> syncCats() {
+        final List<Cat> catList = catService.syncCatsRepository();
+        if (catList == null || catList.size() == 0){
+            throw new ApiNotFoundException("Cats not found exception.");
+        }
+        return new ResponseEntity<>(catList, HttpStatus.CREATED);
+    }
+
     @GetMapping(value = "/cats/random")
-    @CrossOrigin(origins = "http://localhost:8081")
     public ResponseEntity<List<Cat>> randomCats(@RequestParam("count") int count) {
-        final List<Cat> catList = catService.getCatsRandom(count);
+        final List<Cat> catList = catService.findCatsRand(count);
         if (catList == null || catList.size() == 0){
             throw new ApiNotFoundException("Cats not found exception.");
         }

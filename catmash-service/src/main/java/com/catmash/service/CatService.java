@@ -1,5 +1,3 @@
-
-
 package com.catmash.service;
 
 import com.catmash.http.CatHttpClientBuilder;
@@ -56,10 +54,10 @@ public class CatService {
         return cat;
     }
 
-    public List<Cat> getCatsRandom(final int count) {
+    public List<Cat> findCatsRand(final int count ) {
         if (count == 0){
             return new ArrayList<>();
         }
-        return catRepository.getCatsRandom(count);
+        return catRepository.findRandomCats(count);
     }
 }

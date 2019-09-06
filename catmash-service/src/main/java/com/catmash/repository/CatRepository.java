@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CatRepository extends JpaRepository<Cat, String> {
+
     @Query(value = "SELECT * FROM Cat ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
-    List<Cat> getCatsRandom(@Param("count")  int count);
+    List<Cat> findRandomCats(@Param("count") int count);
 }

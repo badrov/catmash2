@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/catGrid">Score</router-link> |
+      <router-link to="/cats">Score</router-link> |
       <router-link to="/vote">Vote</router-link>
     </div>
     <router-view/>
