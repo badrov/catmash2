@@ -27,15 +27,27 @@ export default new Vuex.Store({
   },
   actions: {
     async getCats(context) {
-      const data = (await Axios.get('http://localhost:8080/cats')).data;
-      context.commit('setCats', data);
+      const data = (await Axios.get('http://localhost:8080/api', {
+        params: {
+          query: '{getCats{id, url, score}}',
+        },
+      })).data;
+      context.commit('setCats', data.data.getCats);
     },
+
     async getRandomCats(context, count) {
-      const data =  (await Axios.get( 'http://localhost:8080/cats/random?count=' + count)).data;
-      context.commit('setRandomCats', data);
+      const data = (await Axios.get('http://localhost:8080/api', {
+        params: {
+          query: '{getRandomCats(count: 2){id, url}}',
+        },
+      })).data;
+      context.commit('setRandomCats', data.data.getRandomCats);
     },
+
     async updateCat(context, catId) {
-      const data =  (await Axios.put( 'http://localhost:8080/cat/' + catId)).data;
+      (await Axios.post('http://localhost:8080/api', {
+        query: `mutation { updateCatScore(id: ${ JSON.stringify(catId) }){ id } }`,
+      }));
     },
   },
 

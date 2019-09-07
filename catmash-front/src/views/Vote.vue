@@ -37,7 +37,7 @@ export default {
          });
      },
      displayScores() {
-        this.$router.push('catGrid');
+        this.$router.push('cats');
      },
   },
 };

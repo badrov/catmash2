@@ -52,7 +52,7 @@ public class CatResource {
 
     @GetMapping(value = "/cats/random")
     public ResponseEntity<List<Cat>> randomCats(@RequestParam("count") int count) {
-        final List<Cat> catList = catService.findCatsRand(count);
+        final List<Cat> catList = catService.getRandomCats(count);
         if (catList == null || catList.size() == 0){
             throw new ApiNotFoundException("Cats not found exception.");
         }

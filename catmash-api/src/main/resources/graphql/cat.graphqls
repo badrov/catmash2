@@ -1,0 +1,17 @@
+type Cat {
+    id: ID!
+    url: String!
+    name: String!
+    score: Int!
+}
+
+type Resolver {}
+
+type Query {
+    getCats: [Cat]!
+    getRandomCats (count :Int!) : [Cat]!
+}
+
+type Mutation {
+    updateCatScore(id: String!) : Cat!
+}

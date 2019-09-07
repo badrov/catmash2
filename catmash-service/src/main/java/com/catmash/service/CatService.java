@@ -54,7 +54,7 @@ public class CatService {
         return cat;
     }
 
-    public List<Cat> findCatsRand(final int count ) {
+    public List<Cat> getRandomCats(final int count ) {
         if (count == 0){
             return new ArrayList<>();
         }

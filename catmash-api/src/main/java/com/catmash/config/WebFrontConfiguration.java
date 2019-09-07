@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-public class WebMvcConfiguration {
+public class WebFrontConfiguration {
 
     @Autowired
     private FrontProperties frontProperties;
@@ -17,6 +17,7 @@ public class WebMvcConfiguration {
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
+            @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins(frontProperties.getFront().getHost())
