@@ -29,6 +29,8 @@ h1, h2 {
 .cat {
   list-style-type: none;
   padding: 0;
+  width: 500px;
+  height: 200px;
 }
 .cat {
   display: inline-block;
@@ -42,19 +44,13 @@ a {
   border-radius: 2px;
   box-shadow: 0 0 5px #343436;
   filter:brightness(1.1);
-  height: 100%;
-  width: 200px;
+  border-radius: 10%;
+  box-sizing: border-box;
+  max-width: 100%;
+  background-size: cover;
+  border: 5px solid #b77b7b;
 }
-.img:target {
-  height: 450px;
-  width: 500px;
-}
-.img:target+.close {
-  display: block;
-}
-.img:target+.close+.expand{
-  display: none;
-}
+
 .close {
   background-image: url(https://bit.ly/29QeT21);
   background-repeat: no-repeat;
@@ -89,4 +85,5 @@ h2{
   text-align: center;
   text-shadow: 0 0 2px #343436;
 }
+
 </style>

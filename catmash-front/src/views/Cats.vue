@@ -1,16 +1,12 @@
 <template id='CatGrid'>
   <div id="cat-grid">
-    <h1>Grid of {{cats.length}} cats</h1>
-    <gallery :images="cats" @close="index = null" />
-     <div
-       class="image"
-       v-for="(cat, catIndex) in cats"
-       :key="catIndex"
-       @click="index = catIndex"
-       :style="{ backgroundImage: 'url(' + cat.url + ')', width: '300px', height: '200px' }">
-        <div id='progressbar'>
-          <progress :value='cat.score' min='0' max='100'></progress>
-        </div>
+     <v-gallery :images="cats" @close="index = null" />
+     <div class="image"
+          v-for="(cat, catIndex) in cats"
+          :key="catIndex"
+          @click="index = catIndex"
+          :style="{ backgroundImage: 'url(' + cat.url + ')', width: '300px', height: '200px' }">
+       <div class="score">{{cat.score}}</div>
      </div>
   </div>
 </template>
@@ -48,7 +44,26 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    border: 1px solid #ebebeb;
+    border: 5px solid #b77b7b;
     margin: 5px;
+    border-radius: 5%;
+    border: 5px solid #b77b7b;
   }
+  .score {
+    cursor: default;
+    bottom: 0px;
+    right: 0px;
+    border-radius: 50%;
+    height: 2em;
+    width: 2em;
+    font-size: large;
+    text-align: center;
+    background-color: black;
+    color: #42b983;
+    box-shadow: 0px 0px 5px lightgrey;
+    line-height: 2em;
+    margin: 3px;
+  }
+
+
 </style>

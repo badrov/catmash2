@@ -1,9 +1,7 @@
 <template id='Vote'>
   <div>
     <h1>Pour quel chat voteras-tu?</h1>
-    <div class='row'>
-      <button v-on:click='() => {displayScores()}'>Go to score!</button>
-    </div>
+
     <div class='row'>
       <div class='column' v-for='cat in randomCats' :key='cat.id'>
         <Cat :cat='cat' :action='(cat) => voteOne(cat)'/>
@@ -35,9 +33,6 @@ export default {
          .then(() => {
              this.$router.go();
          });
-     },
-     displayScores() {
-        this.$router.push('cats');
      },
   },
 };
