@@ -1,10 +1,14 @@
 <template id='Vote'>
   <div>
     <h1>Pour quel chat voteras-tu?</h1>
-
-    <div class='row'>
-      <div class='column' v-for='cat in randomCats' :key='cat.id'>
-        <Cat :cat='cat' :action='(cat) => voteOne(cat)'/>
+    <div class="gallery">
+      <gallery :images="randomCats" @close="index = null" />
+      <div class="image"
+           v-for="(cat, catIndex) in randomCats"
+           :key="catIndex"
+           @click="voteOne(cat)"
+           :style="{ backgroundImage: 'url(' + cat.url + ')', width: '300px', height: '200px' }">
+        <div class="score">{{cat.score}}</div>
       </div>
     </div>
   </div>
@@ -74,13 +78,20 @@ button {
   border: none;
 }
 
+.gallery {
+  margin: auto;
+  width: 50%;
+}
+
 .image {
   float: left;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  border: 1px solid #ebebeb;
+  border: 5px solid #b77b7b;
   margin: 5px;
+  border-radius: 5%;
+  border: 5px solid #b77b7b;
 }
 
 </style>

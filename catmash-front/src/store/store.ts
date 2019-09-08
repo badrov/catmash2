@@ -27,7 +27,7 @@ export default new Vuex.Store({
   },
   actions: {
     async getCats(context) {
-      const data = (await Axios.get('http://localhost:8080/api', {
+      const data = (await Axios.get('http://192.168.1.22:8080/api', {
         params: {
           query: '{getCats{id, url, score}}',
         },
@@ -36,7 +36,7 @@ export default new Vuex.Store({
     },
 
     async getRandomCats(context, count) {
-      const data = (await Axios.get('http://localhost:8080/api', {
+      const data = (await Axios.get('http://192.168.1.22:8080/api', {
         params: {
           query: '{getRandomCats(count: 2){id, url}}',
         },
@@ -45,7 +45,7 @@ export default new Vuex.Store({
     },
 
     async updateCat(context, catId) {
-      (await Axios.post('http://localhost:8080/api', {
+      (await Axios.post('http://192.168.1.22:8080/api', {
         query: `mutation { updateCatScore(id: ${ JSON.stringify(catId) }){ id } }`,
       }));
     },

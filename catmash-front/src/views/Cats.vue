@@ -1,6 +1,6 @@
 <template id='CatGrid'>
   <div id="cat-grid">
-     <v-gallery :images="cats" @close="index = null" />
+     <gallery :images="cats" @close="index = null" />
      <div class="image"
           v-for="(cat, catIndex) in cats"
           :key="catIndex"
