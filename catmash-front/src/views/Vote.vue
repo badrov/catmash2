@@ -26,7 +26,7 @@ export default {
     Cat,
   },
   mounted() {
-      this.$store.dispatch('getRandomCats', 2);
+      this.loadGame();
   },
   computed: mapState([
       'randomCats',
@@ -35,9 +35,12 @@ export default {
      voteOne(cat) {
          this.$store.dispatch('updateCat', cat.id)
          .then(() => {
-             this.$store.dispatch('getRandomCats', 2);
+             this.loadGame();
          });
      },
+      loadGame() {
+         this.$store.dispatch('getRandomCats', 2);
+      },
   },
 };
 </script>
