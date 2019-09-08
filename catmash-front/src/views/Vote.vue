@@ -35,7 +35,7 @@ export default {
      voteOne(cat) {
          this.$store.dispatch('updateCat', cat.id)
          .then(() => {
-             this.$router.go();
+             this.$store.dispatch('getRandomCats', 2);
          });
      },
   },
